@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALIFESTE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:#0b1120;color:#fff;overflow-x:hidden}
+#particles{position:fixed;inset:0;z-index:-1}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 8%;position:fixed;width:100%;background:rgba(11,17,32,.8);backdrop-filter:blur(10px)}
+.logo{font-size:30px;font-weight:700;color:#22d3ee}
+nav a,nav button{color:#fff;text-decoration:none;margin-left:20px;background:none;border:none;cursor:pointer}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
+.hero h1{font-size:clamp(50px,8vw,110px)}
+.hero p{color:#94a3b8;font-size:22px;margin:20px 0}
+.btn{background:#22d3ee;color:#000;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:700}
+section{padding:100px 8%}
+h2{font-size:40px;color:#22d3ee;margin-bottom:30px}
+.card,.project,.contact-box{background:#111827;border:1px solid #1f2937;border-radius:20px;padding:25px}
+.projects,.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.project:hover{transform:translateY(-8px);transition:.3s}
+.fakeimg{height:180px;border-radius:12px;background:#1f2937;display:flex;align-items:center;justify-content:center;margin-bottom:15px}
+footer{text-align:center;padding:40px;color:#94a3b8}
+.hidden-admin{display:none}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+
+<header>
+<div class="logo">ALIFESTE</div>
+<nav>
+<a href="#realizacje">Realizacje</a>
+<a href="#omnie">O mnie</a>
+<a href="#kontakt">Kontakt</a>
+<button onclick="discordLogin()">Zaloguj przez Discord</button>
+</nav>
+</header>
+
+<section class="hero">
+<h1>ALIFESTE</h1>
+<p>Tworzę nowoczesne strony internetowe oraz budowle w Minecraft.</p>
+<a href="#realizacje" class="btn">Zobacz realizacje</a>
+</section>
+
+<section id="omnie">
+<h2>O mnie</h2>
+<div class="card">
+Cześć! Mam na imię Antek i mam 15 lat.<br><br>
+Zajmuję się tworzeniem stron internetowych oraz budowaniem map i konstrukcji w Minecraft.
+Aktualnie rozwijam swoje umiejętności, dlatego wykonuję projekty za darmo, zdobywając doświadczenie i rozwijając swój warsztat.
+<br><br>
+Każdy projekt jest dla mnie okazją do nauki nowych technologii i tworzenia coraz lepszych realizacji.
+</div>
+</section>
+
+<section id="realizacje">
+<h2>Realizacje</h2>
+<div class="projects">
+<div class="project">
+<div class="fakeimg">Zdjęcie projektu</div>
+<h3>Przykładowy Projekt</h3>
+<p>Czas realizacji: 3 dni</p>
+<p>⭐⭐⭐⭐⭐</p>
+</div>
+<div class="project">
+<div class="fakeimg">Zdjęcie projektu</div>
+<h3>Kolejna Realizacja</h3>
+<p>Czas realizacji: 5 dni</p>
+<p>⭐⭐⭐⭐</p>
+</div>
+</div>
+</section>
+
+<section id="kontakt">
+<h2>Kontakt</h2>
+<div class="contact">
+<div class="contact-box"><h3>Discord</h3><p>alifeste</p></div>
+<div class="contact-box"><h3>Gmail</h3><p>Brak</p></div>
+<div class="contact-box"><h3>Serwer Discord</h3><p>Brak</p></div>
+</div>
+</section>
+
+<div class="hidden-admin">
+<button>Dodaj realizację</button>
+</div>
+
+<footer>© ALIFESTE</footer>
+
+<script>
+function discordLogin(){
+ alert("Logowanie Discord będzie dostępne wkrótce.");
+}
+
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
+resize();addEventListener('resize',resize);
+const p=[...Array(70)].map(()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,v:0.2+Math.random()}));
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle='rgba(34,211,238,.8)';
+p.forEach(a=>{
+a.y-=a.v;
+if(a.y<0)a.y=innerHeight;
+ctx.beginPath();
+ctx.arc(a.x,a.y,2,0,Math.PI*2);
+ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
